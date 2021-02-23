@@ -1,11 +1,10 @@
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake/
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake-build-debug/
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/CMakeLists.txt
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/Debug/
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/x64/
-/Asteroids/AsteroidsAssignment/.vs/
+
+
 /cmake-build-debug/
 /.idea/
-/Asteroids/AsteroidsAssignment/x64/
+
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/package-lock.json
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake-build-release/
