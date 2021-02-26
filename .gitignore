@@ -6,6 +6,7 @@
 /cmake-build-debug/
 /.idea/
 /.vs/
+/x64/
 
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/package-lock.json
 /Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake-build-release/
