@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Library.h"
 #include "Player.h"
+//added for images
+#include "SDL_image.h"
 
 
 class Game
@@ -24,6 +26,8 @@ public:
 
 	void Render();
 
+	void Update();
+
 	void Cleanup();
 
 	Player player;
@@ -34,7 +38,7 @@ private:
 
 	SDL_Event _events{};
 	Vector2Int* _screenSize = nullptr;
-
+	int cnt = 0;
 };
 
 

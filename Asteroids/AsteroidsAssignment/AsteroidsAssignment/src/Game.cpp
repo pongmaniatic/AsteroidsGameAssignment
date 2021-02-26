@@ -5,6 +5,8 @@
 
 #include "Game.h"
 #include "Player.h"
+SDL_Texture* playerTex;
+SDL_Rect srcR, destR;
 
 Game::Game()
 {
@@ -31,6 +33,9 @@ Game::Game()
 
 	appRunning = true;
 
+	SDL_Surface* tmpSurface = IMG_Load("assets/playeWhite.png");
+	playerTex = SDL_CreateTextureFromSurface(_renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
 
 }
 
@@ -90,7 +95,17 @@ void Game::Render()
 
 
 
+	SDL_RenderCopy(_renderer, playerTex, NULL, NULL);
+
+
 	SDL_RenderPresent(_renderer);
+
+
+}
+void Game::Update()
+{
+	cnt++
+
 
 
 }
