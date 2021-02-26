@@ -30,7 +30,7 @@ public:
 
 	void Cleanup();
 
-	Player player;
+	Player* player;
 
 private:
 	SDL_Window* _window = nullptr;

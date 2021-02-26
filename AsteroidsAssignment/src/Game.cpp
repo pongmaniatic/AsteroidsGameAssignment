@@ -5,8 +5,9 @@
 
 #include "Game.h"
 #include "Player.h"
-SDL_Texture* playerTex;
-SDL_Rect srcR, destR;
+
+using namespace std;
+
 
 Game::Game()
 {
@@ -16,9 +17,9 @@ Game::Game()
 
 	_screenSize = new Vector2Int(800, 600);
 
-	player = Player();
 
 	SDL_CreateWindowAndRenderer(_screenSize->x, _screenSize->y, SDL_WINDOW_ALLOW_HIGHDPI, &_window, &_renderer);
+
 
 	if (_window == nullptr) {
 		// In the case that the window could not be made...
@@ -31,11 +32,9 @@ Game::Game()
 
 	SDL_RenderPresent(_renderer);
 
-	appRunning = true;
+	player  = new Player(_renderer);
 
-	SDL_Surface* tmpSurface = IMG_Load("assets/playeWhite.png");
-	playerTex = SDL_CreateTextureFromSurface(_renderer, tmpSurface);
-	SDL_FreeSurface(tmpSurface);
+	appRunning = true;
 
 }
 
@@ -48,9 +47,9 @@ void Game::GameLoop()
 		//Check for input;
 		HandleEvents();
 
+		Update();
 		//Render the screen
 		Render();
-
 
 	}
 
@@ -69,7 +68,7 @@ void Game::HandleEvents()
 
 	while (SDL_PollEvent(&_events)) {
 		if (_events.type==SDL_KEYDOWN){
-		player.Input(_events);
+		player->Input(_events);
 		}
 		if (_events.button.type == SDL_MOUSEBUTTONDOWN) {
 			r = _events.button.x;
@@ -93,9 +92,9 @@ void Game::HandleEvents()
 void Game::Render()
 {
 
-
-
-	SDL_RenderCopy(_renderer, playerTex, NULL, NULL);
+	SDL_RenderClear(_renderer);
+	player->Rendering();
+	
 
 
 	SDL_RenderPresent(_renderer);
@@ -104,9 +103,6 @@ void Game::Render()
 }
 void Game::Update()
 {
-	cnt++;
-
-
 
 }
 

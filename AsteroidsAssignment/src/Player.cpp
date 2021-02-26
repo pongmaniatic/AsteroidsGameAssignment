@@ -2,6 +2,7 @@
 // Created by Vilhelm Stokstad on 2021-02-22.
 //
 
+
 #include "Player.h"
 #include <iostream>
 
@@ -43,12 +44,28 @@ void Player::_Move(Vector2 direction)
 
 void Player::_Fire()
 {
+	
+}
+void Player::Rendering()
+{
+	SDL_RenderCopy(_rendererPlayer, playerTex, NULL, &destR);
+}
+
+void Player::Update()
+{
+	
+	destR.h = 32;
+	destR.w = 32;
+	//destR.x = cnt;
 
 }
 
 
-Player::Player()
+Player::Player(SDL_Renderer* _renderer)
 {
+	_rendererPlayer = _renderer;
+	destR.h = 32;
+	destR.w = 32;
 	_direction = Vector2(0.0f, 0.0f);
 	_position = Vector2(0.0f, 0.0f);
 	_up =  SDLK_UP;
@@ -56,6 +73,9 @@ Player::Player()
 	_left = SDLK_LEFT;
 	_right = SDLK_RIGHT;
 	_space = SDLK_SPACE;
+	SDL_Surface* tmpSurface = IMG_Load("assets/playeWhite.png");
+	playerTex = SDL_CreateTextureFromSurface(_renderer, tmpSurface);
+	SDL_FreeSurface(tmpSurface);
 }
 
 
