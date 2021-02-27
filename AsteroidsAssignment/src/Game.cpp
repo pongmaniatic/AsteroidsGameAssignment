@@ -5,8 +5,7 @@
 
 #include "Game.h"
 #include "Player.h"
-
-using namespace std;
+#include "Actor.h"
 
 
 Game::Game()
@@ -24,15 +23,18 @@ Game::Game()
 	if (_window == nullptr) {
 		// In the case that the window could not be made...
 		std::cout << "Could not create window: " << SDL_GetError() << std::endl;
-
+	}
+	if (_renderer == nullptr) {
+		// In the case that the window could not be made...
+		std::cout << "Could not create renderer: " << SDL_GetError() << std::endl;
 	}
 
-	SDL_SetRenderDrawColor(_renderer, 100, 100, 100, 250);
+	SDL_SetRenderDrawColor(_renderer, 30, 20, 40, 250);
 	SDL_RenderClear(_renderer);
-
 	SDL_RenderPresent(_renderer);
 
-	player  = new Player(_renderer);
+
+	player = Player(_renderer);
 
 	appRunning = true;
 
@@ -48,6 +50,7 @@ void Game::GameLoop()
 		HandleEvents();
 
 		Update();
+
 		//Render the screen
 		Render();
 
@@ -67,8 +70,8 @@ void Game::HandleEvents()
 	SDL_GetRenderDrawColor(_renderer, &r, &g, &b, &a);
 
 	while (SDL_PollEvent(&_events)) {
-		if (_events.type==SDL_KEYDOWN){
-		player->Input(_events);
+		if (_events.type == SDL_KEYDOWN) {
+			player.HandleInput(_events);
 		}
 		if (_events.button.type == SDL_MOUSEBUTTONDOWN) {
 			r = _events.button.x;
@@ -93,17 +96,18 @@ void Game::Render()
 {
 
 	SDL_RenderClear(_renderer);
-	player->Rendering();
-	
 
+
+	player.Rendering();
 
 	SDL_RenderPresent(_renderer);
 
 
 }
+
 void Game::Update()
 {
-
+	player.Update();
 }
 
 

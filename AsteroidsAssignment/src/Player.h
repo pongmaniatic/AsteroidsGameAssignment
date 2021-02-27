@@ -2,24 +2,29 @@
 // Created by Vilhelm Stokstad on 2021-02-22.
 //
 
-#ifndef ASTEROIDS_PLAYER_H
-#define ASTEROIDS_PLAYER_H
+#ifndef ASTEROIDS_ASSIGNMENT_PLAYER_H
+#define ASTEROIDS_ASSIGNMENT_PLAYER_H
 
-#include "Game.h"
-#include <SDL.h>
-#include "Library.h"
 
-class Player
+#include "Actor.h"
+
+
+class Player : Actor
 {
 public:
 	SDL_Texture* playerTex;
-	SDL_Rect srcR, destR;
+	SDL_Rect srcR{};
+	SDL_FRect destR{};
+
+	Player(SDL_Renderer* renderer);
+
+	Player();
+
 	void Update();
-	
-	Player(SDL_Renderer* _renderer);
 
 	void Rendering();
-	void Input(SDL_Event event);
+
+	void HandleInput(SDL_Event event);
 
 private:
 
@@ -32,13 +37,15 @@ private:
 	Vector2 _position;
 	Vector2 _direction;
 
+	virtual int OnCollision();
+
 	void _Fire();
-	void _Move(Vector2 direction);
+
+	void _Move();
 
 
-	void _DebugMove(Vector2 direction);
 
 };
 
 
-#endif //ASTEROIDS_PLAYER_H
+#endif //ASTEROIDS_ASSIGNMENT_PLAYER_H

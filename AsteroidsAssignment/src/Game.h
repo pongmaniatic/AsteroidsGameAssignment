@@ -2,13 +2,15 @@
 // Created by Vilhelm Stokstad on 2021-02-17.
 //
 
-#ifndef ASTEROIDS_GAME_H
-#define ASTEROIDS_GAME_H
+#ifndef ASTEROIDS_ASSIGNMENT_GAME_H
+#define ASTEROIDS_ASSIGNMENT_GAME_H
 
 #include "SDL.h"
 #include <iostream>
 #include "Library.h"
+#include "Actor.h"
 #include "Player.h"
+
 //added for images
 #include "SDL_image.h"
 
@@ -30,7 +32,8 @@ public:
 
 	void Cleanup();
 
-	Player* player;
+	class Player player;
+
 
 private:
 	SDL_Window* _window = nullptr;
@@ -42,4 +45,4 @@ private:
 };
 
 
-#endif //ASTEROIDS_GAME_H
+#endif //ASTEROIDS_ASSIGNMENT_GAME_H

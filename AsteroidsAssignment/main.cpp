@@ -2,8 +2,7 @@
 
 #include "SDL.h"
 #include "src/Game.h"
-
-using namespace std;
+#include "src/Actor.h"
 
 
 int main(int argc, char* argv[])

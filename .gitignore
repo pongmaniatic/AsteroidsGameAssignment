@@ -1,13 +1,21 @@
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake/
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake-build-debug/
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/CMakeLists.txt
+## Vilhelms local builds and project files
+AsteroidsAssignment/cmake/
+AsteroidsAssignment/cmake-build-debug/
+AsteroidsAssignment/build/
+AsteroidsAssignment/CMakeLists.txt
+/AsteroidsAssignment/package-lock.json
+/AsteroidsAssignment/cmake-build-release/
+CMakeLists.txt
+*/build/
+*/.idea/
 
 
-/cmake-build-debug/
-/.idea/
-/.vs/
-/x64/
+## VS FILES
+*.sln
+*/.vs/
+*/x64/
+*.vsxproj
 
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/package-lock.json
-/Asteroids/AsteroidsAssignment/AsteroidsAssignment/cmake-build-release/
+
+
 
