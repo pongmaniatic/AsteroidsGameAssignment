@@ -5,16 +5,14 @@ AsteroidsAssignment/build/
 AsteroidsAssignment/CMakeLists.txt
 /AsteroidsAssignment/package-lock.json
 /AsteroidsAssignment/cmake-build-release/
-CMakeLists.txt
 */build/
 */.idea/
 
 
 ## VS FILES
-*.sln
-*/.vs/
+
 */x64/
-*.vsxproj
+
 
 
 

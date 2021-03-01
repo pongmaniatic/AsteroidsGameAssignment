@@ -3,71 +3,60 @@
 //
 
 
+
 #include "Player.h"
-#include <iostream>
-
-using namespace std;
-
-int Player::OnCollision()
-{
-	return 0;
-
-}
 
 
 
 
 void Player::HandleInput(SDL_Event event)
 {
-	if (event.key.keysym.sym == _up) {
-		_direction.y = Library::Lerp(_direction.y, 1.0f, 1.0f);
-		cout << "moveUp" << endl;
+	if (event.key.keysym.sym == mUp) {
+		mDirection.y = Library::Lerp(mDirection.y, 1.0f, 1.0f);
+
 	}
-	if (event.key.keysym.sym == _down) {
-		_direction.y = Library::Lerp(_direction.y, -1.0f, 1.0f);
-		cout << "moveDown" << endl;
+	if (event.key.keysym.sym == mDown) {
+		mDirection.y = Library::Lerp(mDirection.y, -1.0f, 1.0f);
+
 	}
-	if (event.key.keysym.sym == _left) {
-		_direction.x = Library::Lerp(_direction.x, -1.0f, 1.0f);
-		cout << "moveLeft" << endl;
+	if (event.key.keysym.sym == mLeft) {
+		mDirection.x = Library::Lerp(mDirection.x, -1.0f, 1.0f);
+
 	}
-	if (event.key.keysym.sym == _right) {
-		_direction.x = Library::Lerp(_direction.x, 1.0f, 1.0f);
-		cout << "moveRight" << endl;
+	if (event.key.keysym.sym == mRight) {
+		mDirection.x = Library::Lerp(mDirection.x, 1.0f, 1.0f);
+
 	}
-	if (event.key.keysym.sym == _space) {
-		_Fire();
+	if (event.key.keysym.sym == mSpace) {
+		Fire();
 	}
 
-	_Move();
+	Move();
 }
 
 
-void Player::_Move()
+void Player::Move()
 {
-	cout << "direction :" << "X " << _direction.x << "Y" << _direction.y << endl;
-	cout << "position :" << "X " << _position.x << "Y" << _position.y << endl;
-	srcR.x = _position.x;
-	srcR.y = _position.y;
-	this->_position.x = Library::Lerp(this->_position.x, _direction.x, 0.2F);
-	this->_position.y = Library::Lerp(this->_position.y, _direction.y, 0.2F);
-	destR.x = _position.x;
-	destR.y = _position.y;
 
-	cout << "After _Move position :" << "X " << _position.x << "Y" << _position.y << endl;
+
+	mSrcR->x = mPosition.x;
+	mSrcR->y = mPosition.y;
+	this->mPosition.x = Library::Lerp(this->mPosition.x, mDirection.x, 0.2F);
+	this->mPosition.y = Library::Lerp(this->mPosition.y, mDirection.y, 0.2F);
+	mDestR->x = mPosition.x;
+	mDestR->y = mPosition.y;
+
 }
 
-void Player::_Fire()
+void Player::Fire()
 {
-	cout << "FIRE" << endl;
 }
 
 void Player::Rendering()
 {
-	auto dirDeg = std::cos(Vector2::Dot(_direction.normalized(), _position.normalized()));
+	auto dirDeg = std::cos(Vector2::Dot(mDirection.normalized(), mPosition.normalized()));
 	SDL_RendererFlip flip = dirDeg > 180 ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-
-	SDL_RenderCopyExF(_rendererPlayer, playerTex, &srcR, &destR, dirDeg, nullptr, flip);
+	SDL_RenderCopyExF(mPlayerRenderer, mPlayerTex, mSrcR, mDestR, dirDeg, nullptr, flip);
 }
 
 void Player::Update()
@@ -79,32 +68,37 @@ void Player::Update()
 
 }
 
-Player::Player(SDL_Renderer* renderer)
+void Player::Init(SDL_Renderer* playerRenderer)
 {
-	_rendererPlayer = renderer;
 
-	srcR = {};
-	destR = {};
+	mPlayerRenderer = playerRenderer;
+	mSrcR = new SDL_Rect{ .x=0, .y=0, .w=32, .h=32, };
+	mDestR = new SDL_FRect{ .x=.0f, .y=.0f, .w=32.0f, .h=32.0f, };
 
-	srcR.h = 32;
-	srcR.w = 32;
+	mDirection = Vector2(0.0f, 0.0f);
+	mPosition = Vector2(0.0f, 0.0f);
 
-	destR.h = 32;
-	destR.w = 32;
 
-	_direction = Vector2(0.0f, 0.0f);
-	_position = Vector2(0.0f, 0.0f);
 
-	_up = SDLK_UP;
-	_down = SDLK_DOWN;
-	_left = SDLK_LEFT;
-	_right = SDLK_RIGHT;
-	_space = SDLK_SPACE;
+	IMG_Init(IMG_INIT_PNG);
+	const char* playerWhite = "assets/playerWhite.png";
+	SDL_RWops* file = SDL_RWFromFile(playerWhite, "READ");
 
-	SDL_Surface* tmpSurface = IMG_Load("./assets/playerWhite.png");
-	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+	SDL_Surface* tmpSurface = IMG_LoadPNG_RW(file);
+	mPlayerTex = SDL_CreateTextureFromSurface(mPlayerRenderer, tmpSurface);
 	SDL_FreeSurface(tmpSurface);
+
+
 }
+
+Player::Player()
+= default;
+
+
+
+
+
+
 
 
 
