@@ -5,7 +5,6 @@ AsteroidsAssignment/build/
 AsteroidsAssignment/CMakeLists.txt
 /AsteroidsAssignment/package-lock.json
 /AsteroidsAssignment/cmake-build-release/
-CMakeLists.txt
 */build/
 */.idea/
 

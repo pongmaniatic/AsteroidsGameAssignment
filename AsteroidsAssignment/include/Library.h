@@ -1,12 +1,12 @@
 //Stolen from Oliver Lebert;
 //Added Vector3 with similar operators as V2;
 //Added Lerp function for floats and Vector3;
-#ifndef ASTEROIDS_ASSIGNMENT_LIBRARY_H
-#define ASTEROIDS_ASSIGNMENT_LIBRARY_H
+
 
 #pragma once
 
 #include <cmath>
+
 
 
 struct Vector3
@@ -288,5 +288,3 @@ public:
 
 
 };
-
-#endif
